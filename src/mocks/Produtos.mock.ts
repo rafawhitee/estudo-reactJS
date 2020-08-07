@@ -1,6 +1,6 @@
 import Produto from '../models/Produto'
 
-export default function getProdutos(): Produto[] {
+export function getProdutos(): Produto[] {
     return [
         { id: 1, nome: 'Playstation 4', descricao: 'Console da Sony', preco: 2199 },
         { id: 2, nome: 'Playstation 4 Pro', descricao: 'Console da Sony - Suporte a 4K', preco: 2999 },

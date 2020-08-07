@@ -19,7 +19,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 import SendIcon from '@material-ui/icons/Send'
 import StyledMenu from '../StyledMenu'
 import StyledMenuItem from '../StyledMenuItem'
-import { Link } from 'react-router-dom'
+import Link from '@material-ui/core/Link'
+import { Link as RouterLink } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -153,31 +154,26 @@ export default function Header() {
       onClose={handleMenuScreenClose}>
 
       <StyledMenuItem>
-        <Link to='/'>
+        <Link component={RouterLink} to='/'>
           <ListItemIcon className={classes.iconsMenuScreen}>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-        Home
+         Home
         </Link>
+
       </StyledMenuItem>
 
       <StyledMenuItem>
-        <Link to='/produtos'>
+
+        <Link component={RouterLink} to='/produtos'>
           <ListItemIcon className={classes.iconsMenuScreen}>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-        Produtos
+          Produtos
         </Link>
+
       </StyledMenuItem>
 
-      <StyledMenuItem>
-        <Link to='/produtos'>
-          <ListItemIcon className={classes.iconsMenuScreen}>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
-        Produtos
-        </Link>
-      </StyledMenuItem>
 
     </StyledMenu>
   )
