@@ -8,6 +8,7 @@ import Produto from '../../models/Produto'
 import { useAuth } from '../../contexts/Auth'
 import Usuario from '../../models/Usuario'
 import AuthContextValue from '../../models/AuthContextValue'
+import * as UsuarioService from '../../services/UsuarioService'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -28,13 +29,8 @@ function Produtos() {
 
     const adicionarNoCarrinho = (produto: Produto) => {
         if (usuarioLogado) {
-            let cloneUsuarioLogado: Usuario = { ...usuarioLogado }
-            if (!cloneUsuarioLogado.carrinho)
-                cloneUsuarioLogado.carrinho = new Array<Produto>()
-
-            cloneUsuarioLogado.carrinho.push(produto)
-            setUsuarioLogado(cloneUsuarioLogado)
-            console.log(cloneUsuarioLogado.carrinho)
+            let usuarioModificado: Usuario = UsuarioService.adicionarProdutoNoCarrinho(usuarioLogado, produto)
+            setUsuarioLogado(usuarioModificado)
         }
     }
 
@@ -45,7 +41,7 @@ function Produtos() {
             <Grid container direction="column">
                 <Grid item container className={classes.gridProdutos} spacing={2}>
                     {produtos.map(produto => (
-                        <ProdutoCard produto={produto} adicionarNoCarrinho={() => adicionarNoCarrinho(produto)} />
+                        <ProdutoCard key={produto.id} produto={produto} adicionarNoCarrinho={() => adicionarNoCarrinho(produto)} />
                     ))}
                 </Grid>
             </Grid>
